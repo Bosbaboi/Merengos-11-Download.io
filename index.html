@@ -1,126 +1,213 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download MERENG OS</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a0f;
-      color: #fff;
+      background: linear-gradient(180deg, #0a0a0f 0%, #0d1b2a 100%);
+      color: #eee;
+      overflow-x: hidden;
     }
     header {
-      padding: 2rem;
+      background: #0d0d1a;
       text-align: center;
-      background-color: #0d0d1a;
+      padding: 3rem 1rem;
+      animation: slideFade 1s ease forwards;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #00aaff;
+      margin-bottom: 0.5rem;
     }
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeIn 2s ease forwards;
+    header p {
+      color: #aaa;
+      font-size: 1.2rem;
     }
-    @keyframes fadeIn {
+    @keyframes slideFade {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+    .section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+    }
     .edition-cards {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 1rem;
+      gap: 2rem;
+      justify-content: center;
     }
     .card {
-      background-color: #13131f;
-      border-radius: 12px;
-      padding: 1.5rem;
+      background: #13131f;
+      border-radius: 16px;
+      padding: 2rem;
       width: 300px;
-      box-shadow: 0 0 10px rgba(0,170,255,0.2);
       text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.15);
+      transition: transform 0.5s, box-shadow 0.5s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: popIn 1s ease forwards;
+    }
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .card:hover {
+      transform: translateY(-10px) rotateX(2deg);
+      box-shadow: 0 16px 30px rgba(0, 170, 255, 0.3);
     }
     .card h3 {
       color: #00aaff;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .card p {
+      color: #ccc;
+      line-height: 1.4;
     }
     .download-btn {
-      background-color: #007bff;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
+      margin-top: 1.5rem;
       display: inline-block;
-      margin-top: 1rem;
+      background: linear-gradient(90deg, #00aaff, #007bff);
+      padding: 0.8rem 1.5rem;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.4s, transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 122, 255, 0.4);
     }
     .download-btn:hover {
-      background-color: #005fcc;
+      background: linear-gradient(90deg, #007bff, #00aaff);
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 122, 255, 0.6);
     }
     .comming-soon {
-      margin-top: 1rem;
-      padding: 0.5rem;
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.2rem;
       background-color: #333;
-      border-radius: 5px;
+      border-radius: 6px;
       color: #ccc;
       font-weight: bold;
+      display: inline-block;
+      opacity: 0.8;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+    h2 {
+      text-align: center;
+      color: #00aaff;
+      margin-bottom: 1rem;
+      animation: slideFade 1s ease forwards;
     }
     .compare-table {
       width: 100%;
-      margin-top: 2rem;
       border-collapse: collapse;
+      background-color: #13131f;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.15);
+      animation: fadeInUp 2s ease forwards;
+      opacity: 0;
     }
     .compare-table th, .compare-table td {
       padding: 1rem;
       text-align: center;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #222;
+      transition: background-color 0.3s;
     }
     .compare-table th {
       background-color: #0d1b2a;
+      color: #00aaff;
+      font-weight: 600;
+    }
+    .compare-table tr:hover {
+      background-color: #1b1b2f;
     }
     footer {
+      background: #0d0d1a;
       text-align: center;
-      padding: 2rem;
-      background-color: #0d0d1a;
-      margin-top: 3rem;
-      color: #888;
+      padding: 2rem 1rem;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      animation: slideFade 2s ease forwards;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Download MERENG OS</h1>
+    <h1>Download MERENG OS 11</h1>
     <p>Choose your edition and start optimizing your PC</p>
-  </header>  <section class="section">
+  </header>
+  <section class="section">
     <div class="edition-cards">
       <div class="card">
         <h3>Download Merengos</h3>
-        <p>Download Merengos<br></p>
-        <div class="COMMINGSOON">Download</div>
+        <p>Download Merengos</p>
+        <div class="comming-soon">COMING SOON</div>
       </div>
       <div class="card">
         <h3>MERENG 11 GHOST STARTALLBACK EDITION</h3>
-        <p>For Extreme Low-End Devices<br>12.2 GB data C 1Gb Ram Replaced StartAllBack</p>
+        <p>For Extreme Low-End Devices<br>12.2 GB data C, 1 GB RAM Replaced StartAllBack</p>
         <a href="https://gofile.io/d/k6IHgc" class="download-btn">Download (New)</a>
       </div>
       <div class="card">
         <h3>SUPERLITE SE Eid Al Adha 24h2 Edition V2</h3>
-        <p>For Extreme Low-End Devices<br>10.2 GB data C 900Mb Ram Replaced StartAllBack and Explorer</p>
+        <p>For Extreme Low-End Devices<br>10.2 GB data C, 900MB RAM Replaced StartAllBack and Explorer</p>
         <a href="https://pixeldrain.com/u/Wj9NXhPg" class="download-btn">Download</a>
       </div>
       <div class="card">
-        <h3>SUPERLITE  Edition</h3>
-        <p>For Extreme Low-End Devices<br>11 GB data C 900Mb Ram Replaced StartAllBack</p>
+        <h3>SUPERLITE Edition</h3>
+        <p>For Extreme Low-End Devices<br>11 GB data C, 900MB RAM Replaced StartAllBack</p>
         <a href="https://pixeldrain.com/u/di7fbzP3" class="download-btn">Download</a>
       </div>
       <div class="card">
         <h3>Standard Edition</h3>
-        <p>For Mid Devices<br>1 GB RAM, Defender Nothing And 11 GB Disk Usage</p>
+        <p>For Mid Devices<br>1 GB RAM, Defender Removed, 11 GB Disk Usage</p>
         <a href="https://pixeldrain.com/u/E2jsJtQV" class="download-btn">Download Standard</a>
       </div>
       <div class="card">
@@ -129,8 +216,9 @@
         <div class="comming-soon">COMING SOON</div>
       </div>
     </div>
-  </section>  <section class="section">
-    <h2 style="text-align: center; color: #00aaff;">MERENG OS vs Standard Windows</h2>
+  </section>
+  <section class="section">
+    <h2>MERENG OS vs Standard Windows</h2>
     <table class="compare-table">
       <tr>
         <th>Feature</th>
@@ -163,8 +251,9 @@
         <td>Many</td>
       </tr>
     </table>
-  </section>  <footer>
-    MERENG OS © 2025 | Built by Bukhari
+  </section>
+  <footer>
+    MERENG OS © 2025 | Built by Muhammad Bukhari Al Deni
   </footer>
 </body>
 </html>
